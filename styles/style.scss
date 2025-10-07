@@ -1,0 +1,377 @@
+@use "./Breakpoints/mixins.scss" as *;
+@use "./typography.scss";
+@use "./styles/list.scss";
+@use "./styles/hr.scss";
+@use "./typo-example.scss";
+
+@import url("https://fonts.signalwerk.ch/css/latest/family=Unicode+BMP+Fallback.css");
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+Symbols+2&family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap"); // for aldus leave ❦
+@import url("https://fonts.googleapis.com/css2?family=Noto+Color+Emoji&display=swap"); // for 🙆
+
+:root {
+  --green-color: #006984;
+  --blue-color: #0054a2;
+  --gray-color: #e6e8ea;
+  --brown-color: rgb(178, 112, 0);
+  --gray-red: #f00;
+
+  --color-primary: var(--blue-color);
+  --color-secondary: var(--green-color);
+  --color-signal: var(--brown-color);
+
+  --column-left: calc(7%);
+  --column-width: calc(89%);
+
+  @include media(m) {
+    --column-left: calc(12%);
+    --column-width: calc(85%);
+  }
+
+  @include media(l) {
+    --column-left: calc(18%);
+    --column-width: calc(75%);
+  }
+
+  @include media(xl) {
+    --column-left: calc(30%);
+    --column-width: calc(55%);
+  }
+
+  @include media(print) {
+    // 12 columns
+    --node-gird--count: 12;
+    --grid--grid-column-gap: 1.5rem;
+
+    --grid--grid-column-width: calc(
+      (100% - 11 * var(--grid--grid-column-gap)) / 12
+    );
+
+    // start at 5th column
+    --column-left: calc(
+      var(--grid--grid-column-width) * 4 + var(--grid--grid-column-gap) * 4
+    );
+    --column-width: calc(
+      var(--grid--grid-column-width) * 7 + var(--grid--grid-column-gap) * 6
+    );
+  }
+}
+
+@page:left {
+  --column-left: calc(
+    var(--grid--grid-column-width) * 1 + var(--grid--grid-column-gap) * 1
+  );
+}
+
+::selection {
+  background: var(--color-primary);
+  color: white;
+  text-shadow: none;
+}
+
+body {
+  margin: 0;
+}
+
+img {
+  width: 100%;
+  display: block;
+  // only required for images with max-width
+  // height: auto;
+}
+
+p,
+ol,
+ul {
+  margin-top: 0;
+  margin-bottom: 0.6em;
+
+  @include media(print) {
+    orphans: 3;
+    widows: 3;
+  }
+}
+
+a {
+  color: inherit;
+
+  text-decoration: underline;
+  text-decoration-color: black; // var(--color-primary);
+  text-decoration-line: underline;
+  text-decoration-thickness: 0.15em;
+  text-underline-offset: 0.3em;
+
+  &:hover {
+    color: var(--color-primary);
+    text-decoration-color: var(--color-primary);
+  }
+}
+
+@media print {
+  .pagedjs--print a {
+    text-decoration: none;
+  }
+
+  .pagedjs--print a[href^="http"]::after {
+    content: " (" attr(href) ")";
+    font-size: 0.8em;
+  }
+  .pagedjs--print a[href^="https://www.deepl.com/"]::after
+  {
+    content: " (https://www.deepl.com/)";
+  }
+  .pagedjs--print a[href^="https://typography.japan.signalwerk.ch/"]::after
+  {
+    content: "";
+  }
+  .pagedjs--print .node-image__caption a::after {
+    content: "";
+  }
+}
+
+.node-page {
+  width: 100%;
+  max-width: 75rem;
+  margin: 0 auto;
+
+  @include media(screen) {
+    padding-bottom: 10rem;
+  }
+}
+
+.node-page > .node-markdown,
+.node-page > .node-page__footnotes {
+  &:not(.full-width) {
+    width: var(--column-width);
+    margin-left: var(--column-left);
+  }
+}
+
+:root {
+  --node-gird--count: 12;
+  --node-grid-item--column-span: 1;
+}
+
+.node-grid {
+  @include media(s) {
+    display: var(--grid--display, grid);
+  }
+  @include media(print) {
+    display: var(--grid--display, grid);
+  }
+  grid-template-columns: repeat(var(--node-gird--count), 1fr);
+  grid-column-gap: var(--grid--grid-column-gap, 1.5rem);
+
+  margin-top: 2.5rem;
+  margin-bottom: 2rem;
+
+  &.grid--margin-top-big {
+    margin-top: 5rem;
+  }
+
+  &.node-grid--align-items-center {
+    align-items: center;
+  }
+}
+
+.node-grid-item {
+  grid-column: span var(--node-grid-item--column-span);
+
+  & > .node-markdown > .text > hr {
+    margin-top: 0;
+  }
+  & > .node-markdown > .text > p,
+  & > .node-markdown > .text > h4 {
+    margin-top: -0.35em;
+  }
+}
+
+// the big pictures between the text
+.image-emotional {
+  @include media(screen) {
+    display: block;
+    .node-grid-item {
+      width: 75%;
+      margin: 0 auto;
+      @include media(s) {
+        width: 65%;
+      }
+    }
+  }
+  margin-top: 7.5rem;
+  margin-bottom: 5rem;
+  width: var(--column-width);
+  margin-left: var(--column-left);
+
+  @include media(print) {
+    margin-top: 0.7rem;
+    margin-bottom: 0;
+    width: 100%;
+    margin-left: 0;
+
+    &.image-emotional--landscape {
+      margin-top: 11.5rem;
+    }
+  }
+}
+
+.translation,
+small {
+  font-size: 0.75em;
+}
+
+.regular {
+  font-weight: 400;
+}
+
+.node-image__caption {
+  margin-top: 0.5em;
+  // margin-bottom: 1em;
+}
+
+// otherwise change of line
+sup {
+  vertical-align: top;
+  font-size: 0.8em;
+  position: relative;
+  top: -0.075em;
+}
+
+body.debug:after {
+  content: "mobile";
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  font-size: 12px;
+  color: #f00;
+  padding: 0.5em 1em;
+  background-color: #ccc;
+
+  @include media(xs) {
+    content: "Size xs";
+  }
+
+  @include media(s) {
+    content: "Size s";
+  }
+
+  @include media(m) {
+    content: "Size m";
+  }
+
+  @include media(l) {
+    content: "Size l";
+  }
+
+  @include media(xl) {
+    content: "Size xl";
+  }
+  @include media(print) {
+    content: "print";
+    display: none;
+  }
+}
+
+@include media(print) {
+  table,
+  figure {
+    page-break-inside: avoid;
+  }
+
+  h1 {
+    string-set: titleH1 content(text);
+  }
+  h2 {
+    string-set: titleH2 content(text);
+  }
+
+  // for Creep Adjustment
+  // https://chat.openai.com/c/a7948374-e97d-403b-9e9c-e61880000ab4
+
+  @page {
+    size: A4;
+    margin-top: 20mm;
+    margin-bottom: 35mm;
+    margin-left: 30mm;
+    margin-right: 12mm;
+  }
+
+  @page {
+    @bottom-left {
+      vertical-align: bottom;
+      margin-bottom: 15mm;
+    }
+    @bottom-right {
+      vertical-align: bottom;
+      margin-bottom: 15mm;
+    }
+  }
+
+  /* right pages (recto) */
+  @page:right {
+    @bottom-left {
+      content: string(titleH1) " · " string(titleH2);
+      // content: "Stefan Huber · 2024  · " string(titleH1) " · " string(titleH2);
+      font-size: 0.8em;
+    }
+    @bottom-right {
+      content: counter(page);
+      // content: counter(page) " | " counter(pages);
+    }
+  }
+
+  /* left pages (verso) */
+  @page:left {
+    margin-left: 12mm;
+    margin-right: 30mm;
+
+    @bottom-left {
+      content: counter(page);
+      // content: counter(page) " | " counter(pages);
+    }
+    // @bottom-right {
+    //   content: "Stefan Huber · 2024  · " string(titleH1) " · " string(titleH2);
+    //   content: "";
+    //   font-size: 0.8em;
+    // }
+  }
+
+  @page:first {
+    @bottom-left {
+      content: "";
+      font-size: 0.8em;
+    }
+    @bottom-right {
+      content: "";
+    }
+  }
+}
+
+.break-before {
+  break-before: always;
+}
+
+.page-break-before-auto {
+  h2 {
+    page-break-before: auto;
+  }
+}
+
+@include media(print) {
+  nav {
+    li {
+      &::before {
+        content: "";
+      }
+      padding-left: 0;
+      &:not(:first-child) {
+        line-height: 3;
+      }
+    }
+  }
+
+  nav a:after {
+    content: target-counter(attr(href), page, decimal);
+    float: right;
+  }
+}

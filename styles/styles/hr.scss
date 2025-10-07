@@ -1,0 +1,14 @@
+@use "../Breakpoints/mixins.scss" as *;
+
+hr {
+  border: none;
+  height: 2px;
+  background-color: var(--color-primary);
+
+  margin-top: 0.9em;
+  margin-bottom: 0.9em;
+
+  @include media(print) {
+    height: 0.5pt;
+  }
+}

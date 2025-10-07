@@ -1,0 +1,43 @@
+// USE
+//
+// @include media(m) {
+//   xxx: xxx;
+// }
+//
+// @include media(l) {
+//   xxx: xxx;
+// }
+
+@use "variables" as *;
+
+@mixin media($point) {
+  @if $point == xs {
+    @media screen and (min-width: $breakpoints--xs) {
+      @content;
+    }
+  } @else if $point == s {
+    @media screen and (min-width: $breakpoints--s) {
+      @content;
+    }
+  } @else if $point == m {
+    @media screen and (min-width: $breakpoints--m) {
+      @content;
+    }
+  } @else if $point == l {
+    @media screen and (min-width: $breakpoints--l) {
+      @content;
+    }
+  } @else if $point == xl {
+    @media screen and (min-width: $breakpoints--xl) {
+      @content;
+    }
+  } @else if $point == screen {
+    @media screen {
+      @content;
+    }
+  } @else if $point == print {
+    @media print {
+      @content;
+    }
+  }
+}

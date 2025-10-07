@@ -1,0 +1,159 @@
+@use "./Breakpoints/mixins.scss" as *;
+
+$fontSize--default: 14px;
+$fontSize--s: 15px;
+$fontSize--m: 16px;
+
+$line-height--default: 1.55;
+$line-height--s: 1.5;
+$line-height--m: 1.45;
+
+$fontFamily--default--sans: "Work Sans", "Noto Sans JP", "Noto Sans Symbols 2",
+  "Noto Color Emoji", "Unicode BMP Fallback", sans-serif;
+
+$fontFamily--default--mono: "IBM Plex Mono", "Unicode BMP Fallback", monospace;
+
+$fontWeight--default--sans--regular: 400;
+$fontWeight--default--sans--bold: 700;
+
+$fontWeight--default--mono--regular: 400;
+$fontWeight--default--mono--bold: 700;
+
+:root {
+  --typography--size-1: 1.5rem;
+  --typography--size-scaler: 1.125;
+  --typography--size-divider: 0.93;
+
+  @include media(s) {
+    --typography--size-1: 1.45rem;
+    --typography--size-scaler: 1.14;
+    --typography--size-divider: 0.92;
+  }
+
+  @include media(m) {
+    --typography--size-1: 5rem;
+    --typography--size-scaler: 1.4;
+    --typography--size-divider: 0.88;
+  }
+
+  @include media(print) {
+    --typography--size-1: 4.5rem;
+    --typography--size-scaler: 1.4;
+    --typography--size-divider: 0.88;
+  }
+
+  //   @include media(print) {
+  //     --typography--size-1: 5rem;
+  //     --typography--size-scaler: 1.4;
+  //     --typography--size-divider: 0.88;
+  //   }
+
+  // font-sizes h1-h7
+  --typography--size-2: calc(
+    var(--typography--size-3) * var(--typography--size-scaler)
+  );
+  --typography--size-3: calc(
+    var(--typography--size-base) * var(--typography--size-scaler)
+  );
+
+  --typography--size-base: 1rem;
+
+  --typography--size-5: calc(
+    var(--typography--size-base) * var(--typography--size-divider)
+  );
+  --typography--size-6: calc(
+    var(--typography--size-5) * var(--typography--size-divider)
+  );
+  --typography--size-7: calc(
+    var(--typography--size-6) * var(--typography--size-divider)
+  );
+
+  // hyphens: auto;
+
+  font-family: $fontFamily--default--sans;
+  font-weight: $fontWeight--default--sans--regular;
+  font-size: $fontSize--default;
+
+  line-height: $line-height--default;
+
+  @include media(s) {
+    font-size: $fontSize--s;
+    line-height: $line-height--s;
+  }
+
+  @include media(m) {
+    font-size: $fontSize--m;
+    line-height: $line-height--m;
+  }
+
+  @include media(print) {
+    font-size: 9pt;
+    line-height: $line-height--m;
+  }
+}
+
+h1,
+h2,
+h3,
+h4 {
+  margin-top: 0.7em;
+  margin-bottom: 0.4em;
+  line-height: 1.15;
+
+  @include media(m) {
+    hyphens: none;
+  }
+
+  @include media(print) {
+    break-after: avoid;
+  }
+}
+
+h1 {
+  font-size: var(--typography--size-1);
+  font-style: italic;
+  font-family: $fontFamily--default--mono;
+  font-weight: $fontWeight--default--mono--regular;
+  line-height: 1.1;
+}
+
+h2 {
+  font-size: var(--typography--size-2);
+  margin-top: 0;
+  // color: var(--color-primary);
+  margin-bottom: 2.5em;
+
+  @include media(screen) {
+    margin-top: 7rem;
+  }
+
+  @include media(m) {
+    margin-top: 9rem;
+  }
+
+  @include media(xl) {
+    margin-top: 12rem;
+  }
+
+  @include media(print) {
+    page-break-before: right;
+    margin-bottom: 4.5em;
+    // page-break-before: always;
+  }
+}
+
+h3 {
+  font-size: var(--typography--size-3);
+  margin-top: 3em;
+}
+h4 {
+  font-size: var(--typography--size-4);
+  // margin-top: 4em;
+}
+
+code {
+  font-family: $fontFamily--default--mono;
+  font-size: inherit;
+  font-weight: inherit;
+  font-style: inherit;
+}

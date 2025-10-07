@@ -1,0 +1,65 @@
+@use "./Breakpoints/mixins.scss" as *;
+@use "./typography.scss" as *;
+
+.node-box.expample {
+  margin-top: 9rem;
+  margin-bottom: 7.5rem;
+
+  @include media(m) {
+    margin-top: 13rem;
+    margin-bottom: 10.5rem;
+  }
+
+  @include media(print) {
+    break-inside: avoid;
+  }
+
+  padding-left: 0.9em;
+  padding-right: 0.9em;
+
+  @include media(print) {
+    padding-left: 0;
+    padding-right: 0;
+    margin-top: 3.5rem;
+    margin-bottom: 2.25rem;
+  }
+}
+
+.node-box__content {
+  border-top: 0.5rem solid var(--color-primary);
+  border-bottom: 0.2rem solid var(--color-primary);
+
+  .node-text:not(.text--typo-example) {
+    font-size: 0.9em;
+  }
+}
+
+.node-box__title {
+  font-family: $fontFamily--default--mono;
+  font-weight: $fontWeight--default--mono--regular;
+  font-style: italic;
+  background-color: var(--color-primary);
+  color: white;
+  display: inline-block;
+  padding-top: 0.15rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  transform: translateY(0.3rem);
+}
+
+.text--typo-example {
+  font-family: $fontFamily--default--sans;
+  font-size: var(--typography--size-2);
+  font-weight: $fontWeight--default--sans--bold;
+  line-height: 1.3;
+
+  margin-top: 0;
+  margin-bottom: 1.6rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+
+  code {
+    font-family: inherit;
+    color: var(--color-signal);
+  }
+}

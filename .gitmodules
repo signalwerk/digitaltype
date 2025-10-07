@@ -1,0 +1,6 @@
+[submodule "packages/signalwerk.md"]
+	path = packages/signalwerk.md
+	url = git@github.com:signalwerk/signalwerk.md.git
+[submodule "packages/signalwerk.cms"]
+	path = packages/signalwerk.cms
+	url = git@github.com:signalwerk/signalwerk.cms.git

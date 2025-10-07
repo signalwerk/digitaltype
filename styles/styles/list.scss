@@ -1,0 +1,43 @@
+ul,
+ol {
+  --marker-width: 1.4em;
+  --marker-space-after: 0.3em;
+
+  padding-left: 0;
+  margin: 0;
+
+  margin-top: 1em;
+  margin-bottom: 1em;
+  list-style: none;
+}
+
+li {
+  margin-bottom: 0.7em; /* same as p */
+  position: relative;
+  padding-left: calc(var(--marker-width) + var(--marker-space-after));
+}
+
+li::before {
+  position: absolute;
+  left: 0;
+  width: var(--marker-width);
+  display: inline-block;
+  margin-right: var(--marker-space-after);
+}
+
+ul > li::before {
+  content: "–\00A0";
+}
+
+ol {
+  counter-reset: ol-li;
+}
+
+ol > li {
+  counter-increment: ol-li;
+}
+
+ol > li::before {
+  content: counter(ol-li);
+  text-align: center;
+}
