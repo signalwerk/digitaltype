@@ -29,46 +29,40 @@ const PAGE_FILES_PATTERN = `${BASE_DIR}/${PATTERN}`;
  *   /api/pages/test-page/                   → pages/test-page.{json,md}
  *   /api/pages/test-page/index.{html,json}  → pages/test-page.{json,md}
  * 
- * Tries .json first, then .md for each variant
  */
 async function resolveApiPath(requestUrl) {
-  // Clean up the URL - remove leading slash and decode
-  const cleanUrl = decodeURIComponent(
-    requestUrl.startsWith("/") ? requestUrl.slice(1) : requestUrl,
+  // Strip leading slash and decode URL
+  let cleanPath = decodeURIComponent(
+    requestUrl.startsWith("/") ? requestUrl.slice(1) : requestUrl
   );
 
-  // Try different path variations for both .json and .md files
-  const pathsToTry = [
-    // Direct path as provided
-    cleanUrl,
-    // Add .json if not present
-    cleanUrl.endsWith(".json") ? cleanUrl : `${cleanUrl}.json`,
-    // Add .md if not present
-    cleanUrl.endsWith(".json") ? `${cleanUrl.slice(0, -5)}.md` : null,
-    // Remove trailing slash and add .json
-    cleanUrl.endsWith("/") ? `${cleanUrl.slice(0, -1)}.json` : null,
-    // Remove trailing slash and add .md
-    cleanUrl.endsWith("/") ? `${cleanUrl.slice(0, -1)}.md` : null,
-    // Handle index variations
-    cleanUrl.endsWith("/index.html") ? `${cleanUrl.slice(0, -11)}.json` : null,
-    cleanUrl.endsWith("/index.html") ? `${cleanUrl.slice(0, -11)}.md` : null,
-    cleanUrl.endsWith("/index.json") ? `${cleanUrl.slice(0, -11)}.json` : null,
-    cleanUrl.endsWith("/index.json") ? `${cleanUrl.slice(0, -11)}.md` : null,
-    cleanUrl.endsWith("index.html") ? `${cleanUrl.slice(0, -10)}.json` : null,
-    cleanUrl.endsWith("index.html") ? `${cleanUrl.slice(0, -10)}.md` : null,
-    cleanUrl.endsWith("index.json") ? `${cleanUrl.slice(0, -10)}.json` : null,
-    cleanUrl.endsWith("index.json") ? `${cleanUrl.slice(0, -10)}.md` : null,
-  ].filter(Boolean); // Remove null values
+  // Normalize path: remove index.html and index.json patterns
+  cleanPath = cleanPath
+    .replace(/\/index\.(html|json)$/, "")
+    .replace(/index\.(html|json)$/, "");
 
-  // Try each path variation
-  for (const pathVariant of pathsToTry) {
-    const fullPath = path.join(BASE_DIR, pathVariant);
+  // Remove trailing slash
+  if (cleanPath.endsWith("/")) {
+    cleanPath = cleanPath.slice(0, -1);
+  }
+
+  // Extract base path without extension
+  let basePath = cleanPath;
+  if (cleanPath.endsWith(".json") || cleanPath.endsWith(".md")) {
+    basePath = cleanPath.slice(0, cleanPath.lastIndexOf("."));
+  }
+
+  // Try to find file in order of preference: .json first, then .md
+  const extensions = [".json", ".md"];
+  
+  for (const ext of extensions) {
+    const fullPath = path.join(BASE_DIR, basePath + ext);
     try {
       if (await fs.pathExists(fullPath)) {
         return fullPath;
       }
     } catch (error) {
-      // Continue to next path variant
+      // Continue to next extension
       continue;
     }
   }
