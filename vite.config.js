@@ -1,20 +1,30 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 
-import { pagesPlugin } from "./packages/signalwerk.cms/src/processor/pagesPlugin.js";
+import { pagesPlugin, pagesOnlyPlugin } from "./packages/signalwerk.cms/src/processor/pagesPlugin.js";
 
 import config from "./cms.config.jsx";
 
 const BASE_DIR = config.content.base || "pages";
 const PATTERN = config.content.pattern || "**/*.json";
+// create a components object from config.components based on item.type
+const components = config.components || {};
 
-export default defineConfig({
+export default defineConfig(({ command }) => ({
   plugins: [
     react(),
-    pagesPlugin({
-      baseDir: BASE_DIR,
-      pattern: PATTERN,
-    }),
+    // Use pagesOnlyPlugin for build, pagesPlugin for dev
+    command === 'build' 
+      ? pagesOnlyPlugin({
+          baseDir: BASE_DIR,
+          pattern: PATTERN,
+          components,
+        })
+      : pagesPlugin({
+          baseDir: BASE_DIR,
+          pattern: PATTERN,
+          components,
+        }),
   ],
   publicDir: "public", // Serve public folder during dev and copy during build
   build: {
@@ -23,7 +33,20 @@ export default defineConfig({
     sourcemap: true, // Enable source maps for better debugging
     rollupOptions: {
       input: {
-        main: "index.html",
+        main: command === 'build' ? "build-entry.js" : "index.html",
+      },
+      output: {
+        // For pages-only build, only output CSS, skip JS bundle
+        assetFileNames: (assetInfo) => {
+          if (assetInfo.name && assetInfo.name.endsWith(".css")) {
+            return "assets/styles.css";
+          }
+          return assetInfo.name || "assets/[name].[ext]";
+        },
+        entryFileNames: () => {
+          // We don't want the JS bundle for pages-only build, but Vite requires this
+          return command === 'build' ? "empty.js" : "[name].js";
+        },
       },
       // Add better error handling for Rollup
       onwarn(warning, warn) {
@@ -51,4 +74,4 @@ export default defineConfig({
       "@": "/src",
     },
   },
-});
+}));

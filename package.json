@@ -5,9 +5,7 @@
   "scripts": {
     "dev": "vite",
     "build": "npm run clean && npm run build:pages",
-    "migrate": "node pages/migrate.js",
-    "build--old": "npm run clean && vite build",
-    "build:pages": "vite build --config vite.config.pages.js",
+    "build:pages": "vite build",
     "clean": "rm -rf dist/**"
   },
   "dependencies": {
