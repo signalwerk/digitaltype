@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "npm run clean && npm run build:pages",
-    "build:pages": "vite build",
+    "dev": "vite --config ./vite.config.js",
+    "build": "npm run clean && vite build --config ./vite.config.js",
+    "build:pages": "vite build --config ./vite.config.js",
     "clean": "rm -rf dist/**"
   },
   "dependencies": {
