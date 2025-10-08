@@ -54,3 +54,11 @@ Year: 2013
 ![alt text](/media/typedesign/idea-s.png)
 
 Source: Stefan Huber
+
+---
+
+![alt text](/media/roman-du-roi/MicgInv0269.jpg)
+
+![alt text](/media/roman-du-roi/roman-du-roi.png)
+
+1716 · Louis Simonneau · Quelle: [The Rationalization of the Letter · Andrea Herstowski](https://ku-viscom.com/TypeSystems/TypeSystems_RomanduRoi.html)
