@@ -2,6 +2,6 @@
 title: Technology history of digital type
 ---
 
-## Welcome to the Frontmatter Example
+## Media Collection of Digital Type
 
 * [Handwriting](./writing/)
