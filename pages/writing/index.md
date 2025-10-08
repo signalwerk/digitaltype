@@ -2,13 +2,13 @@
 title: Handwriting
 ---
 
-[← Home](/)
+[← Home](/media/)
 
-![alt text](/writing-s/S-step-1.svg)
-![alt text](/writing-s/S-step-2.svg)
-![alt text](/writing-s/S-step-3.svg)
-![alt text](/writing-s/S-step-4.svg)
-![alt text](/writing-s/S-step-5.svg)
+![alt text](/media/writing-s/S-step-1.svg)
+![alt text](/media/writing-s/S-step-2.svg)
+![alt text](/media/writing-s/S-step-3.svg)
+![alt text](/media/writing-s/S-step-4.svg)
+![alt text](/media/writing-s/S-step-5.svg)
 
 Source:
 
@@ -16,9 +16,9 @@ Source:
 
 ---
 
-![alt text](/writing-schulschrift/schulschrift-abc.svg)
+![alt text](/media/writing-schulschrift/schulschrift-abc.svg)
 
-![alt text](/writing-schulschrift/schulschrift-s.svg)
+![alt text](/media/writing-schulschrift/schulschrift-s.svg)
 
 Source:
 
@@ -27,9 +27,9 @@ Source:
 
 ---
 
-![alt text](/writing-gerrit-noordzij/gerrit-noordzij-early-models.jpg)
+![alt text](/media/writing-gerrit-noordzij/gerrit-noordzij-early-models.jpg)
 
-![alt text](/writing-gerrit-noordzij/gerrit-noordzij-early-models-mod.png)
+![alt text](/media/writing-gerrit-noordzij/gerrit-noordzij-early-models-mod.png)
 
 Source:
 
@@ -48,3 +48,9 @@ Language: English
 Initiative: Geen Bitter
 Year: 2013
 ```
+
+---
+
+![alt text](/media/typedesign/idea-s.png)
+
+Source: Stefan Huber
