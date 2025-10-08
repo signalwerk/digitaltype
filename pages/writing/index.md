@@ -62,3 +62,22 @@ Source: Stefan Huber
 ![alt text](/media/roman-du-roi/roman-du-roi.png)
 
 1716 · Louis Simonneau · Quelle: [The Rationalization of the Letter · Andrea Herstowski](https://ku-viscom.com/TypeSystems/TypeSystems_RomanduRoi.html)
+
+---
+
+![alt text](/media/letter-construction/visual_explanations_tufte.png)
+
+Quelle: [Visual Explanations (first edition) · Edward Tufte](https://www.edwardtufte.com/book/visual-explanations-images-and-quantities-evidence-and-narrative) · Graphics Press · Seite 113 · 1996
+
+```
+Title: Visual Explanations
+Subtitle: Images and Quantities, Evidence and Narrative
+Publisher: Graphics Press
+Year: 1997
+Language: English
+Print length: 156 pages
+ISBN-10: 0961392126
+ISBN-13: 978-0961392123
+Item Weight: 2.3 pounds
+Dimensions: 11 x 9 x 1 inches
+```
