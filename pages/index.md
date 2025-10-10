@@ -2,6 +2,6 @@
 title: Technology history of digital type
 ---
 
-## Media Collection of Digital Type
+## Technology history of digital type
 
-* [Handwriting](./writing/)
+* [Media Collection of Digital Type](./media/)

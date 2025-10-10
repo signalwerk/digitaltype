@@ -2,7 +2,7 @@
 title: Handwriting
 ---
 
-[← Home](/media/)
+[← Home](/)
 
 ![alt text](/media/writing-s/S-step-1.svg)
 ![alt text](/media/writing-s/S-step-2.svg)
@@ -67,7 +67,7 @@ Source: Stefan Huber
 
 ![alt text](/media/letter-construction/visual_explanations_tufte.png)
 
-Quelle: [Visual Explanations (first edition) · Edward Tufte](https://www.edwardtufte.com/book/visual-explanations-images-and-quantities-evidence-and-narrative) · Graphics Press · Seite 113 · 1996
+Source: [Visual Explanations (first edition) · Edward Tufte](https://www.edwardtufte.com/book/visual-explanations-images-and-quantities-evidence-and-narrative) · Graphics Press · Seite 113 · 1996
 
 ```
 Title: Visual Explanations
@@ -81,3 +81,33 @@ ISBN-13: 978-0961392123
 Item Weight: 2.3 pounds
 Dimensions: 11 x 9 x 1 inches
 ```
+
+---
+
+![alt text](/media/typesetting/gutenberg.jpg)
+
+Johann Gensfleisch zum Gutenberg, Kupferstich, André Thevet, 1584
+
+Source: [The University of Manchester Library](https://luna.library.manchester.ac.uk/luna/servlet/detail/Manchester~91~1~448455~300534:Portrait-of-Joannes-Gutenberg%22])
+
+---
+
+![alt text](/media/typesetting/P1010771_sh.jpg)
+
+Souce: Stefan Huber
+
+---
+
+![](/media/typesetting/102r1l.jpg)
+
+Rechte Seite aus dem ersten Band der Bibel, die Gutenberg hergestellt hat (B42 Bd. / Vol. 1 - fol. 102r)
+
+Source: ?
+
+---
+
+![](/media/typesetting/monotype.png)
+
+~1900 · Monotype Setzmaschine · Quelle: [Circuitous Root](https://www.circuitousroot.com/artifice/letters/press/comptype/monotype/capabilities/index.html)
+
+---
